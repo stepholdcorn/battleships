@@ -13,4 +13,10 @@ describe Board do
     board.grid
     expect(board.grid).to include("a5" => "grid_cell")
   end
+
+  it 'should contain 100 cells' do
+  	board.grid
+  	expect(board.grid.count).to eq(100)
+  end
+
 end
