@@ -2,25 +2,21 @@ class Board
 
   def initialize
     @cells = true
+    # @board = {}
   end
 
   def has_cells?
     @cells
   end
-  # def initialize
-  #   @ships = []
-  # end
 
-  # def ship_count
-  #   @ships.count
-  # end
-
-  # def place(ship)
-  #   @ships << ship
-  # end
-
-  # def destroy(ship)
-  #   @ships.delete(ship)
-  # end
+  def grid
+    @board = Hash.new
+    ('a'..'j').each do |letter|
+      (1..10).each do |number|
+        @board["#{letter}#{number}"] = "grid_cell"
+      end
+    end
+    @board      
+  end
 
 end

@@ -9,15 +9,8 @@ describe Board do
     expect(board).to have_cells
   end
 
-  # it 'should accept ship' do
-  #   expect(board.ship_count).to eq(0)
-  #   board.place(ship)
-  #   expect(board.ship_count).to eq(1)
-  # end
-
-  # it 'should allow a ship to be destroyed' do
-  #   board.place(ship)
-  #   board.destroy(ship)
-  #   expect(board.ship_count).to eq(0)
-  # end
+  it 'should contain a number of cells' do
+    board.grid
+    expect(board.grid).to include("a5" => "grid_cell")
+  end
 end
