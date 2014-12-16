@@ -1,19 +1,26 @@
 class Ship
 
-def initialize
-	@placed = false
+attr_reader :size
+
+def initialize(size)
+	# @placed = false
+	@size = size
 end
 
-def on_grid?
-	@placed
-end
+# def on_grid?
+# 	@placed = true
+# end
 
-def position!
-	@placed = true
-end
+# def position!
+# 	@placed = true
+# end
 
-def sink!
-	@placed = false
+# def sink!
+# 	@placed = false
+# end
+
+def self.submarine
+	new(3)
 end
 
 
