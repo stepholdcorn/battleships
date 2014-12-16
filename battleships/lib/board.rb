@@ -12,4 +12,8 @@ class Board
     @ships << ship
   end
 
+  def destroy(ship)
+    @ships.delete(ship)
+  end
+
 end
