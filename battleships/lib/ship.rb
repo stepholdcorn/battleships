@@ -1,30 +1,15 @@
 class Ship
 
+SHIPS = {patrol_boat: 2, submarine: 3, destroyer: 3, battleship: 4, aircraft_carrier: 5}
+
 attr_reader :size
 
-def initialize(size)
+def initialize size
 	@size = size
 end
 
-def self.submarine
-	new(3)
+def self.method_missing name
+	return new SHIPS[name] if SHIPS[name]
+    super
 end
-
-def self.aircraft_carrier
-	new(5)
-end
-
-def self.battleship
-	new(4)
-end
-
-def self.destroyer
-	new(3)
-end
-
-def self.patrol_boat
-	new(2)
-end
-
-
 end

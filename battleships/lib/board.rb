@@ -2,7 +2,6 @@ class Board
 
   def initialize
     @cells = true
-    # @board = {}
   end
 
   def has_cells?
