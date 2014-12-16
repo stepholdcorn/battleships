@@ -24,4 +24,9 @@ describe Ship do
     expect(Ship.patrol_boat.size).to eq(2)
   end
 
+  it 'should not break as normal' do
+    expect{Ship.non_existant_method(4)}.to raise_error
+  end
+
+
 end

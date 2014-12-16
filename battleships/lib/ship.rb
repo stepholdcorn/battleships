@@ -12,4 +12,5 @@ def self.method_missing name
 	return new SHIPS[name] if SHIPS[name]
     super
 end
+
 end
