@@ -4,18 +4,17 @@ Battleships is a game where each player has two 10x10 boards. Each player places
 
 The player keeps a record of their shots, noting when a ship has been hit. A ship is sunk when all squares covered by the ship are hit.
 
-
-Boris Bikes
+Battleships
 ====================
 
 ###Class - Board
 
 Responsibilites             | Collaborators
 ----------------------------|------------------
-ships_placed                | User, Ships
+ships_placed_on_board       | User, Ships
 record (hit or miss)        | User
 take_turn                   | User
-shoot                       |
+shoot                       | User
 
 
 
