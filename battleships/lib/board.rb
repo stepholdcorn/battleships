@@ -1,19 +1,26 @@
 class Board
 
   def initialize
-    @ships = []
+    @cells = true
   end
 
-  def ship_count
-    @ships.count
+  def has_cells?
+    @cells
   end
+  # def initialize
+  #   @ships = []
+  # end
 
-  def place(ship)
-    @ships << ship
-  end
+  # def ship_count
+  #   @ships.count
+  # end
 
-  def destroy(ship)
-    @ships.delete(ship)
-  end
+  # def place(ship)
+  #   @ships << ship
+  # end
+
+  # def destroy(ship)
+  #   @ships.delete(ship)
+  # end
 
 end
