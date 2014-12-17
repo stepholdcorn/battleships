@@ -6,6 +6,7 @@ describe Cell do
 
   let(:cell) {BoardCell.new}
   let(:ship) {double :ship}
+  let(:water) {double :water}
 
   it 'should accept ship' do
     cell.place(ship)
@@ -18,9 +19,9 @@ describe Cell do
     expect(cell.ship_count).to eq(0)
   end
 
-  # it 'should accept water' do
-  #   expect(cell.water_count).to eq(0)
-  #   cell.contain(water)
-  #   expect(cell.water_count).to eq(1)
-  # end
+  it 'should contain water' do
+    cell.place(ship)
+    cell.destroy(ship)
+    expect(cell.ship_count).to eq(0)
+  end
 end

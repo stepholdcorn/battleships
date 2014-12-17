@@ -1,4 +1,10 @@
+require_relative 'cell'
+
 class Board
+
+include Cell
+
+  attr_reader :cell
 
   def initialize
     @cells = true
@@ -12,7 +18,7 @@ class Board
     @board = Hash.new
     ('a'..'j').each do |letter|
       (1..10).each do |number|
-        @board["#{letter}#{number}"] = "grid_cell"
+        @board["#{letter}#{number}"] = @cell = :water
       end
     end
     @board      

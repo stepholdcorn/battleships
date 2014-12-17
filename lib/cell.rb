@@ -12,9 +12,4 @@ module Cell
   def destroy(ship)
     @ships.delete(ship)
   end
-
-  # def water_count
-  #   @water.count
-  # end
-
 end
