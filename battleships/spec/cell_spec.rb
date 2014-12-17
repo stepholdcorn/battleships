@@ -1,12 +1,13 @@
 require 'cell'
 
+class BoardCell; include Cell; end
+
 describe Cell do
 
-  let(:cell) {Cell.new}
+  let(:cell) {BoardCell.new}
   let(:ship) {double :ship}
 
   it 'should accept ship' do
-    expect(cell.ship_count).to eq(0)
     cell.place(ship)
     expect(cell.ship_count).to eq(1)
   end
@@ -16,4 +17,10 @@ describe Cell do
     cell.destroy(ship)
     expect(cell.ship_count).to eq(0)
   end
+
+  # it 'should accept water' do
+  #   expect(cell.water_count).to eq(0)
+  #   cell.contain(water)
+  #   expect(cell.water_count).to eq(1)
+  # end
 end
