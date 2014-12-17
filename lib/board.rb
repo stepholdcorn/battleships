@@ -4,8 +4,6 @@ class Board
 
 include Cell
 
-  attr_reader :cell
-
   def initialize
     @cells = true
   end
@@ -18,10 +16,14 @@ include Cell
     @board = Hash.new
     ('a'..'j').each do |letter|
       (1..10).each do |number|
-        @board["#{letter}#{number}"] = @cell = :water
+        @board["#{letter}#{number}"] = :water
       end
     end
     @board      
+  end
+
+  def placed_ship
+    grid.replace( {"a5" => :ship})
   end
 
 end

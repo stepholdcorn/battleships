@@ -10,7 +10,7 @@ describe Board do
     expect(board).to have_cells
   end
 
-  it 'should contain a number of cells' do
+  it 'should contain water cells on initialization' do
     board.grid
     expect(board.grid).to include("a5" => :water)
   end
@@ -18,5 +18,11 @@ describe Board do
   it 'should contain 100 cells' do
   	board.grid
   	expect(board.grid.count).to eq(100)
+  end
+
+  xit 'should recognise when a ship has been placed on a cell' do
+    board.grid
+    board.placed_ship
+    expect(board.grid).to include("a5" => :ship)
   end
 end

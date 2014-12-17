@@ -1,15 +1,11 @@
 module Cell
 
-  def place(ship)
-    @ships = []
-    @ships << ship
-  end
+def property
+  @cell = :water
+end
 
-  def ship_count
-    @ships.count
-  end
+def place_ship
+  @cell = :ship
+end
 
-  def destroy(ship)
-    @ships.delete(ship)
-  end
 end
