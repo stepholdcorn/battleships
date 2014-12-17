@@ -21,8 +21,7 @@ include Cell
     @board
   end
 
-  def placed_ship(coord)
-    @board[coord] = :ship
+  def place(ship, *coords)
+    coords.each { |coord| @board[coord] = :ship }
   end
-
 end
