@@ -1,5 +1,6 @@
 require_relative 'cell'
 
+
 class Board
 
 include Cell
@@ -22,6 +23,7 @@ include Cell
   end
 
   def place(ship, *coords)
-    coords.each { |coord| @board[coord] = :ship }
+    raise 'wrong number of coords' if ship.size != coords.size
+    coords.each { |coord| @board[coord] = :ship } 
   end
 end
