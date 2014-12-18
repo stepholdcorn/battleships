@@ -33,15 +33,10 @@ describe Board do
 
       it 'should be able to place a submarine' do
         grid_property 3
-        board.place(ship,'a1', 'a2', 'a3')
+        board.place(ship, horizontal,'a1')
         expect(board.grid['a1']).to eq(:ship)
         expect(board.grid['a2']).to eq(:ship)
         expect(board.grid['a3']).to eq(:ship)
-      end
-
-      it 'should raise error if wrong number of coords is supplied' do
-        grid_property 3
-        expect( lambda { board.place(ship, 'a1', 'a2', 'a3', 'a4') }).to raise_error(RuntimeError, 'wrong number of coords')
       end
 
       it 'should be able to receive a hit' do
@@ -49,16 +44,6 @@ describe Board do
         board.place(ship, 'a1', 'a2')
         board.hit!('a1')
         expect(board.grid['a1']).to eq(:water)
-      end
-
-      it 'should be able to raise error if coords not in order' do
-        grid_property 2
-        expect( lambda { board.place(ship, 'a1', 'b2') }).to raise_error(RuntimeError, 'You must place a ship in order')
-      end
-
-      it 'should be able to raise error if coords not in order for a ship larger than 2' do
-        grid_property 3
-        expect( lambda { board.place(ship, 'a1', 'a2', 'a4') }).to raise_error(RuntimeError, 'You must place a ship in order')
       end
 
     end
