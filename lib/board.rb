@@ -22,10 +22,13 @@ include Cell
     @board
   end
 
-  def place(ship, *coords)
-    raise 'wrong number of coords' if ship.size != coords.size
-    raise 'You must place a ship in order' if coords[1] != coords[0].next
-    coords.each { |coord| @board[coord] = :ship } 
+  def place(ship, orientation, coord)
+    coords = @board
+    coords.each { |coord| @board[coord] = :ship }
+    if orientation == 'vertical'
+    coords.reverse.next.reverse
+    else 'error'
+    end
   end
 
   def hit!(coord)
