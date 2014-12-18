@@ -22,13 +22,16 @@ include Cell
     @board
   end
 
-  def place(ship, orientation, coord)
-    coords = @board
-    coords.each { |coord| @board[coord] = :ship }
-    if orientation == 'vertical'
-    coords.reverse.next.reverse
-    else 'error'
-    end
+  def place(ship, coord)
+
+      coords = Array.new
+      coords << coord
+      ship.size.times do
+        coord = coord.reverse.next.reverse
+        coords << coord
+      end
+  
+     coords.each { |coord| @board[coord] = :ship }
   end
 
   def hit!(coord)
