@@ -30,4 +30,11 @@ describe Board do
     expect( lambda { board.place(ship, 'a1', 'a2', 'a3', 'a4') }).to raise_error(RuntimeError, 'wrong number of coords')
   end
 
+  it 'should be able to receive a hit' do
+    board.grid
+    board.place(ship, 'a1')
+    board.hit!('a1')
+    expect(board.grid['a1']).to eq(:water)
+  end
+
 end
