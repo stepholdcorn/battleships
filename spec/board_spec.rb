@@ -24,39 +24,43 @@ describe Board do
   	expect(board.grid.count).to eq(100)
   end
 
-  it 'should be able to place a submarine' do
-    ship_size 3
-    create_grid
-    board.place(ship,'a1', 'a2', 'a3')
-    expect(board.grid['a1']).to eq(:ship)
-    expect(board.grid['a2']).to eq(:ship)
-    expect(board.grid['a3']).to eq(:ship)
-  end
+    context ' Creating grid properties' do
 
-  it 'should raise error if wrong number of coords is supplied' do
-    ship_size 3
-    create_grid
-    expect( lambda { board.place(ship, 'a1', 'a2', 'a3', 'a4') }).to raise_error(RuntimeError, 'wrong number of coords')
-  end
+      def grid_property number
+        ship_size (number)
+        create_grid
+      end
 
-  it 'should be able to receive a hit' do
-    ship_size 2
-    create_grid
-    board.place(ship, 'a1', 'a2')
-    board.hit!('a1')
-    expect(board.grid['a1']).to eq(:water)
-  end
+      it 'should be able to place a submarine' do
+        grid_property 3
+        board.place(ship,'a1', 'a2', 'a3')
+        expect(board.grid['a1']).to eq(:ship)
+        expect(board.grid['a2']).to eq(:ship)
+        expect(board.grid['a3']).to eq(:ship)
+      end
 
-  it 'should be able to raise error if coords not in order' do
-    ship_size 2
-    create_grid
-    expect( lambda { board.place(ship, 'a1', 'b2') }).to raise_error(RuntimeError, 'You must place a ship in order')
-  end
+      it 'should raise error if wrong number of coords is supplied' do
+        grid_property 3
+        expect( lambda { board.place(ship, 'a1', 'a2', 'a3', 'a4') }).to raise_error(RuntimeError, 'wrong number of coords')
+      end
 
-  it 'should be able to raise error if coords not in order for a ship larger than 2' do
-    ship_size 3
-    create_grid
-    expect( lambda { board.place(ship, 'a1', 'a2', 'a4') }).to raise_error(RuntimeError, 'You must place a ship in order')
-  end
+      it 'should be able to receive a hit' do
+        grid_property 2
+        board.place(ship, 'a1', 'a2')
+        board.hit!('a1')
+        expect(board.grid['a1']).to eq(:water)
+      end
+
+      it 'should be able to raise error if coords not in order' do
+        grid_property 2
+        expect( lambda { board.place(ship, 'a1', 'b2') }).to raise_error(RuntimeError, 'You must place a ship in order')
+      end
+
+      it 'should be able to raise error if coords not in order for a ship larger than 2' do
+        grid_property 3
+        expect( lambda { board.place(ship, 'a1', 'a2', 'a4') }).to raise_error(RuntimeError, 'You must place a ship in order')
+      end
+
+    end
 
 end
