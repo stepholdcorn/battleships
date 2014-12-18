@@ -26,4 +26,8 @@ include Cell
     raise 'wrong number of coords' if ship.size != coords.size
     coords.each { |coord| @board[coord] = :ship } 
   end
+
+  def hit!(coord)
+    @board[coord] = property
+  end
 end
