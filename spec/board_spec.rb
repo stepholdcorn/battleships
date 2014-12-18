@@ -9,6 +9,11 @@ describe Board do
     board.grid
   end
 
+  def ship_size number
+    allow(ship).to receive(:size) {number}
+  end
+
+
   it 'should contain water cells on initialization' do
     create_grid
     expect(board.grid).to include("a5" => :water)
@@ -20,7 +25,7 @@ describe Board do
   end
 
   it 'should be able to place a submarine' do
-    allow(ship).to receive(:size) {3}
+    ship_size 3
     create_grid
     board.place(ship,'a1', 'a2', 'a3')
     expect(board.grid['a1']).to eq(:ship)
@@ -29,23 +34,30 @@ describe Board do
   end
 
   it 'should raise error if wrong number of coords is supplied' do
-    allow(ship).to receive(:size) {3}
+    ship_size 3
     create_grid
     expect( lambda { board.place(ship, 'a1', 'a2', 'a3', 'a4') }).to raise_error(RuntimeError, 'wrong number of coords')
   end
 
   it 'should be able to receive a hit' do
-    allow(ship).to receive(:size) {1}
+    ship_size 1
     create_grid
     board.place(ship, 'a1')
     board.hit!('a1')
     expect(board.grid['a1']).to eq(:water)
   end
 
-  it 'should be able to place a ship horizontally' do
-    allow(ship).to receive(:size) {2}
+  it 'should be able to coord and raise error' do
+    ship_size 2
+    allow(board).to receive(:coord_check) {false}
     create_grid
-    expect( lambda { board.place(ship, 'a1', 'b2') }).to raise_error(RuntimeError, 'You must place a ship horizontally')
+    expect( lambda { board.place(ship, 'a1', 'b2') }).to raise_error(RuntimeError, 'You must place a ship in order')
+  end
+
+  it 'should be able to check coords are in order' do
+    ship_size 2
+    create_grid
+    expect( lambda { board.place(ship, 'a1', 'b2') }).to raise_error(RuntimeError, 'You must place a ship in order')
   end
 
 end
