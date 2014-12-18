@@ -40,24 +40,23 @@ describe Board do
   end
 
   it 'should be able to receive a hit' do
-    ship_size 1
+    ship_size 2
     create_grid
-    board.place(ship, 'a1')
+    board.place(ship, 'a1', 'a2')
     board.hit!('a1')
     expect(board.grid['a1']).to eq(:water)
   end
 
-  it 'should be able to coord and raise error' do
+  it 'should be able to raise error if coords not in order' do
     ship_size 2
-    allow(board).to receive(:coord_check) {false}
     create_grid
     expect( lambda { board.place(ship, 'a1', 'b2') }).to raise_error(RuntimeError, 'You must place a ship in order')
   end
 
-  it 'should be able to check coords are in order' do
-    ship_size 2
+  it 'should be able to raise error if coords not in order for a ship larger than 2' do
+    ship_size 3
     create_grid
-    expect( lambda { board.place(ship, 'a1', 'b2') }).to raise_error(RuntimeError, 'You must place a ship in order')
+    expect( lambda { board.place(ship, 'a1', 'a2', 'a4') }).to raise_error(RuntimeError, 'You must place a ship in order')
   end
 
 end

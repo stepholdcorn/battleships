@@ -22,13 +22,9 @@ include Cell
     @board
   end
 
-  def coord_check
-    true
-  end
-
   def place(ship, *coords)
     raise 'wrong number of coords' if ship.size != coords.size
-    raise 'You must place a ship in order' if coord_check == false
+    raise 'You must place a ship in order' if coords[1] != coords[0].next
     coords.each { |coord| @board[coord] = :ship } 
   end
 
@@ -36,3 +32,5 @@ include Cell
     @board[coord] = property
   end
 end
+
+
