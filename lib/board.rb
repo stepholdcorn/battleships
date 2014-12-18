@@ -22,15 +22,18 @@ include Cell
     @board
   end
 
-  def place(ship, coord)
-
-      coords = Array.new
+  def place(ship, orientation, coord)
+      coords = []
       coords << coord
       ship.size.times do
+        if orientation == 'vertical'
         coord = coord.reverse.next.reverse
+        elsif orientation == 'horizontal'
+        coord = coord.next
+      else 'please enter correct orientation'
+      end
         coords << coord
       end
-  
      coords.each { |coord| @board[coord] = :ship }
   end
 

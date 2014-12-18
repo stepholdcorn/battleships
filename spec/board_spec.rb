@@ -31,19 +31,27 @@ describe Board do
         create_grid
       end
 
-      it 'should be able to place a submarine' do
+      it 'should be able to receive a hit' do
+        grid_property 2
+        board.place(ship, 'vertical', 'a1')
+        board.hit!('a1')
+        expect(board.grid['a1']).to eq(:water)
+      end
+
+      it 'should be able to place ship vertically' do
         grid_property 3
-        board.place(ship,'a1')
+        board.place(ship, 'vertical', 'a1')
         expect(board.grid['a1']).to eq(:ship)
         expect(board.grid['b1']).to eq(:ship)
         expect(board.grid['c1']).to eq(:ship)
       end
 
-      it 'should be able to receive a hit' do
-        grid_property 2
-        board.place(ship, 'a1')
-        board.hit!('a1')
-        expect(board.grid['a1']).to eq(:water)
+      it "should be able to place ship horizontally" do
+        grid_property 3
+        board.place(ship, 'horizontal', 'a1')
+        expect(board.grid['a1']).to eq(:ship)
+        expect(board.grid['a2']).to eq(:ship)
+        expect(board.grid['a3']).to eq(:ship)
       end
 
     end
