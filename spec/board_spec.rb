@@ -13,7 +13,6 @@ describe Board do
     allow(ship).to receive(:size) {number}
   end
 
-
   it 'should contain water cells on initialization' do
     create_grid
     expect(board.grid).to include("a5" => :water)
@@ -34,8 +33,8 @@ describe Board do
       it 'should be able to receive a hit' do
         grid_property 2
         board.place(ship, 'vertical', 'a1')
-        board.hit!('a1')
-        expect(board.grid['a1']).to eq(:water)
+        board.receive_hit!('a1')
+        expect(board.grid['a1']).to eq(:hit!)
       end
 
       it 'should be able to place ship vertically' do
